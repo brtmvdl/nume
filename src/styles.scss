@@ -90,7 +90,8 @@ h1.title {
 }
 
 .container {
-  width: 500px;
+  // width: 500px;
+  width: 320px;
   margin: 0 auto;
 }
 
@@ -104,7 +105,7 @@ h1.title {
   -moz-user-select: none;
   background: #bbada0;
   border-radius: 6px;
-  width: 500px;
+  // width: 500px;
   // height: 500px;
   -ms-touch-action: none;
   -webkit-box-sizing: border-box;
@@ -179,15 +180,15 @@ h1.title {
 }
 
 .grid-cell {
-  width: 106.25px;
-  height: 106.25px;
-  line-height: 106.25px;
+  width: 61.25px;
+  height: 61.25px;
+  line-height: 61.25px;
   margin-right: 15px;
   float: left;
   border-radius: 3px;
   background: rgba(238, 228, 218, 0.35);
   text-align: center;
-  font-size: 48px;
+  font-size: 30px;
 }
 
 .grid-cell:last-child {
