@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalService } from './services/local.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,11 @@ export class AppComponent implements OnInit {
   table = [];
   points = 0;
   max = 0;
+
+  constructor(
+    private local: LocalService,
+  ) {
+  }
 
   get gameMessageStyle(): {} {
     return {
@@ -37,7 +43,7 @@ export class AppComponent implements OnInit {
   }
 
   setMax(): void {
-    const points = Number.parseInt(window.localStorage.getItem('points'), 10);
+    const points = Number.parseInt(this.local.retrieve('points'), 10);
     if (points) {
       this.max = points;
     } else {
@@ -68,7 +74,7 @@ export class AppComponent implements OnInit {
   }
 
   lose(): void {
-    window.localStorage.setItem('points', this.max.toString());
+    this.local.set('points', this.max.toString());
     this.selecteds = [];
     this.playing = false;
     console.log('lose');
