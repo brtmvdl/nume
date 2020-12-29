@@ -1,6 +1,12 @@
 # Nume
 
-## Configuração
+## Como funciona
+
+Acesse o jogo em http://nume.tarsis.cc/
+
+Para manter uma pontuação alta você não pode clicar no mesmo número duas vezes seguidas.
+
+## Instalação
 
 Instale o [Node.js](https://nodejs.org/en/) e o [Yarn](https://yarnpkg.com/)
 
