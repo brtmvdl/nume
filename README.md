@@ -6,6 +6,10 @@ Acesse o jogo em http://nume.tarsis.cc/
 
 Para manter uma pontuação alta você não pode clicar no mesmo número duas vezes seguidas.
 
+<a href="http://nume.tarsis.cc/">
+  <img src="./screenshot.png" />
+</a>
+
 ## Instalação
 
 Instale o [Node.js](https://nodejs.org/en/) e o [Yarn](https://yarnpkg.com/)
