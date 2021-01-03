@@ -36,3 +36,9 @@ yarn start
 Visualize no navegador
 
 http://localhost:4200/
+
+## Instalação com Docker
+
+```sh
+docker run --name nume -d -p 4200:80 tmvdl/nume
+```
