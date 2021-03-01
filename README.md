@@ -14,7 +14,7 @@ Para manter uma pontuação alta você não pode clicar no mesmo número duas ve
 
 Instale o [Node.js](https://nodejs.org/en/) e o [Yarn](https://yarnpkg.com/)
 
-Clone esse repository
+Clone esse repositório
 
 ```sh
 git clone https://github.com/tmvdl/nume.git
