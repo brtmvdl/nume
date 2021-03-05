@@ -1,13 +1,9 @@
-FROM node:14-alpine
+FROM tmvdl/android:ionic
 
 WORKDIR /app
 
 COPY . .
 
-RUN npm install --global @angular/cli
+RUN npm ci --force
 
-RUN npm install
-
-CMD [ "npm", "start", "--", "--host=0.0.0.0", "--disableHostCheck", "--port=80" ]
-
-EXPOSE 80
+ENV NG_APP=nume
