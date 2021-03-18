@@ -128,7 +128,12 @@ export class AppComponent implements OnInit {
       .filter((_, ix) => ix < this.SELECTED_NUMBERS)
 
     const totalCels = this.LINES_NUMBER * this.COLUMNS_NUMBER
-    const numbers = this.makeNewNumbers(totalCels - selecteds.length);
+    let numbers: number[];
+
+    do {
+      numbers = this.makeNewNumbers(totalCels - selecteds.length);
+    } while (numbers.some(n => this.hasIn(n, this.selecteds)))
+
     return this.randomizeNumbers(numbers.concat(selecteds))
   }
 
