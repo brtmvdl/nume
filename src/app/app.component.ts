@@ -8,6 +8,10 @@ import { LocalService } from './services/local.service';
 })
 export class AppComponent implements OnInit {
 
+  LINES_NUMBER = 4;
+  COLUMNS_NUMBER = 4;
+  SELECTED_NUMBERS = 4;
+
   playing = false;
 
   x: number;
@@ -77,7 +81,6 @@ export class AppComponent implements OnInit {
     this.local.set('points', this.max.toString());
     this.selecteds = [];
     this.playing = false;
-    console.log('lose');
   }
 
   makeNewNumbers(howManyNew: number): number[] {
@@ -100,15 +103,14 @@ export class AppComponent implements OnInit {
   }
 
   makeTable(numbers: number[]): number[][] {
-    const lineNumber = Math.ceil(numbers.length / 4 + 1);
-    const table = [...Array(lineNumber)].map(() => [...Array(4)]);
+    const table = [...Array(this.LINES_NUMBER)].map(() => [...Array(this.COLUMNS_NUMBER)]);
 
     for (let n = 0; n < numbers.length; n++) {
       let line, col;
 
       do {
-        line = this.randomNumber(lineNumber);
-        col = this.randomNumber(4);
+        line = this.randomNumber(this.LINES_NUMBER);
+        col = this.randomNumber(this.COLUMNS_NUMBER);
       } while (table[line][col]);
 
       table[line][col] = numbers[n];
@@ -117,15 +119,23 @@ export class AppComponent implements OnInit {
     return table;
   }
 
+  randomizeNumbers(numbers: number[]): number[] {
+    return numbers
+      .sort(() => Math.floor(Math.random() * 3) - 1)
+      .sort(() => Math.floor(Math.random() * 3) - 1)
+  }
+
+  makeNumbers(): number[] {
+    const selecteds = this.randomizeNumbers(this.selecteds)
+      .filter((_, ix) => ix < this.SELECTED_NUMBERS)
+
+    const totalCels = this.LINES_NUMBER * this.COLUMNS_NUMBER
+    const numbers = this.makeNewNumbers(totalCels - selecteds.length);
+    return this.randomizeNumbers(numbers.concat(selecteds))
+  }
+
   makeGame(): void {
-    const newNumbers = this.makeNewNumbers(this.randomNumber(3) + 3);
-
-    const numbers = this.selecteds // get selecteds
-      .concat(newNumbers) // join new numbers
-      .sort(() => Math.floor(Math.random() * 3) - 1)  // randomize
-      .sort(() => Math.floor(Math.random() * 3) - 1); // randomize again
-
-    this.table = this.makeTable(numbers);
+    this.table = this.makeTable(this.makeNumbers());
   }
 
   play(): void {
