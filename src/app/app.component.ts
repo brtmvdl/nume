@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   playing = false;
 
   x: number;
-  // numbers: number[] = [];
+  numbers: number[] = [];
   selecteds: number[] = [];
 
   table = [];
@@ -102,19 +102,17 @@ export class AppComponent implements OnInit {
     return newNumbers;
   }
 
-  makeTable(numbers: number[]): number[][] {
-    const table = [...Array(this.LINES_NUMBER)].map(() => [...Array(this.COLUMNS_NUMBER)]);
+  createMap(lines, columns): any[][] {
+    return [...Array(lines)].map(() => [...Array(columns)]);
+  }
 
-    for (let n = 0; n < numbers.length; n++) {
-      let line, col;
+  makeTable(lines: number, columns: number, numbers: number[] = []): number[][] {
+    const table = this.createMap(lines, columns)
+    let n = 0;
 
-      do {
-        line = this.randomNumber(this.LINES_NUMBER);
-        col = this.randomNumber(this.COLUMNS_NUMBER);
-      } while (table[line][col]);
-
-      table[line][col] = numbers[n];
-    }
+    for (let l = 0; l < lines; l++)
+      for (let c = 0; c < columns; c++)
+        table[l][c] = numbers[n++];
 
     return table;
   }
@@ -134,8 +132,24 @@ export class AppComponent implements OnInit {
     return this.randomizeNumbers(numbers.concat(selecteds))
   }
 
+  findDuplicatedNumbers(list1: number[], list2: number[] = []): boolean {
+    return list1.find((num, index) => num === list2[index]) !== undefined
+  }
+
   makeGame(): void {
-    this.table = this.makeTable(this.makeNumbers());
+    let numbers: number[];
+
+    for (
+      numbers = this.makeNumbers();
+      this.findDuplicatedNumbers(numbers, this.numbers);
+      numbers = this.makeNumbers()
+    );
+
+    this.table = this.makeTable(
+      this.LINES_NUMBER,
+      this.COLUMNS_NUMBER,
+      this.numbers = numbers
+    );
   }
 
   play(): void {
