@@ -38,8 +38,8 @@ export class AppComponent implements OnInit {
     this.play();
   }
 
-  randomNumber(to: number): number {
-    return Math.floor(Math.random() * to);
+  randomNumber(max: number): number {
+    return Math.floor(Math.random() * max);
   }
 
   hasIn(which: number, list: number[]): boolean {
@@ -48,18 +48,12 @@ export class AppComponent implements OnInit {
 
   setMax(): void {
     const points = Number.parseInt(this.local.retrieve('points'), 10);
-    if (points) {
-      this.max = points;
-    } else {
-      this.max = 0;
-    }
+    this.max = points ? points : 0;
   }
 
   makePoints(): void {
     this.points++;
-    if (this.points > this.max) {
-      this.max = this.points;
-    }
+    this.max = Math.max(this.max, this.points)
   }
 
   pushInSelecteds(cell: number): void {
@@ -83,23 +77,25 @@ export class AppComponent implements OnInit {
     this.playing = false;
   }
 
-  makeNewNumbers(howManyNew: number): number[] {
-    const newNumbers = [];
+  randomNumbers(lenth: number, max: number): number[] {
+    const numbers: number[] = [];
+    while (lenth--) numbers.push(this.randomNumber(max));
+    return numbers;
+  }
 
-    for (let i = 0; i < howManyNew; i++) {
-      let cell: number;
+  getNewNumbers(length: number, notIn: number[] = []): number[] {
+    const numbers = [];
 
-      do {
-        cell = this.randomNumber(90) + 10;
-      } while (
-        this.hasIn(cell, newNumbers) ||
-        this.hasIn(cell, this.selecteds)
-      );
+    for (let i = 0; i < length; i++) {
+      let num: number;
 
-      newNumbers.push(cell);
+      do num = this.randomNumber(90) + 10;
+      while (this.hasIn(num, numbers) || this.hasIn(num, notIn));
+
+      numbers.push(num);
     }
 
-    return newNumbers;
+    return numbers;
   }
 
   createMap(lines, columns): any[][] {
@@ -123,38 +119,29 @@ export class AppComponent implements OnInit {
       .sort(() => Math.floor(Math.random() * 3) - 1)
   }
 
-  makeNumbers(): number[] {
-    const selecteds = this.randomizeNumbers(this.selecteds)
-      .filter((_, ix) => ix < this.SELECTED_NUMBERS)
-
-    const totalCels = this.LINES_NUMBER * this.COLUMNS_NUMBER
-    let numbers: number[];
-
-    do {
-      numbers = this.makeNewNumbers(totalCels - selecteds.length);
-    } while (numbers.some(n => this.hasIn(n, this.selecteds)))
-
-    return this.randomizeNumbers(numbers.concat(selecteds))
+  randomizeAndFilter(list: number[], length: number): number[] {
+    return this.randomizeNumbers(list)
+      .filter((_, ix) => ix < length);
   }
 
-  findDuplicatedNumbers(list1: number[], list2: number[] = []): boolean {
-    return list1.find((num, index) => num === list2[index]) !== undefined
+  getGameNumbers(length: number, selectedsLength: number): number[] {
+    const { selecteds } = this
+    const filteredSelecteds = this.randomizeAndFilter(selecteds, selectedsLength)
+    const newNumbers = this.getNewNumbers(length - filteredSelecteds.length, selecteds);
+    const numbers = this.randomizeNumbers(newNumbers.concat(filteredSelecteds))
+
+    return numbers;
   }
 
   makeGame(): void {
-    let numbers: number[];
+    const {
+      LINES_NUMBER: lines,
+      COLUMNS_NUMBER: cols,
+      SELECTED_NUMBERS: selecteds
+    } = this
 
-    for (
-      numbers = this.makeNumbers();
-      this.findDuplicatedNumbers(numbers, this.numbers);
-      numbers = this.makeNumbers()
-    );
-
-    this.table = this.makeTable(
-      this.LINES_NUMBER,
-      this.COLUMNS_NUMBER,
-      this.numbers = numbers
-    );
+    this.numbers = this.getGameNumbers(lines * cols, selecteds);
+    this.table = this.makeTable(lines, cols, this.numbers);
   }
 
   play(): void {
