@@ -115,15 +115,13 @@ h1.title {
 
 .game-message {
   display: none;
-  // position: absolute;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  position: absolute;
   background: rgba(238, 228, 218, 0.5);
-  z-index: 100;
+  z-index: 1;
   text-align: center;
+  width: 320px;
+  height: 320px;
+  top: 88px;
   -webkit-animation: fade-in 800ms ease 1200ms;
   -moz-animation: fade-in 800ms ease 1200ms;
   animation: fade-in 800ms ease 1200ms;
@@ -146,9 +144,9 @@ h1.title {
 }
 
 .game-message p {
-  font-size: 3em;
-  margin-top: calc(50vh - 60px);
-  margin-bottom: 0px;
+  font-size: 40px;
+  margin: 0px 0 20px;
+  padding: 100px 0 0;
 }
 
 .game-message.game-won {

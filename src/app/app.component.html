@@ -7,11 +7,6 @@
     </div>
   </div>
 
-  <div class="game-message" [style]="gameMessageStyle">
-    <p>Você perdeu</p>
-    <button class="retry-button" (click)="play()">Mais uma vez</button>
-  </div>
-
   <div class="game-container">
     <div class="grid-container">
       <div class="grid-row" *ngFor="let line of table">
@@ -22,6 +17,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div class="game-message" [style]="gameMessageStyle">
+    <p>Você perdeu</p>
+    <button class="retry-button" (click)="play()">Mais uma vez</button>
   </div>
 
   <p class="game-hint">Não toque nos mesmos.</p>
