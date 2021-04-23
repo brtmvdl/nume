@@ -2,12 +2,10 @@
 
 ## Como funciona
 
-Acesse o jogo em http://nume.tarsis.cc/
-
 Para manter uma pontuação alta você não pode clicar no mesmo número duas vezes seguidas.
 
 <a href="http://nume.tarsis.cc/">
-  <img src="./screenshot.png" />
+  <img src="./docs/screenshot.png" />
 </a>
 
 ## Instalação
