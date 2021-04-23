@@ -1,22 +1,11 @@
 {
   "name": "com.tmvdl.nume",
   "displayName": "Nume",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Não toque nos mesmos.",
   "main": "index.js",
   "author": "Tarsis de Lima (https://github.com/tmvdl)",
   "license": "MIT",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "clean": "rm -rf dist www/* && touch www/.gitkeep",
-    "build:cordova": "npm run clean && ng build --prod --base-href=. --output-path=www",
-    "cordova:prepare": "rm -rf platforms plugins node_modules && npm ci && cordova prepare"
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~11.2.4",
