@@ -1,10 +1,11 @@
 version: '3'
 
-services: 
-  app:
-    image: tmvdl/android:ionic
-    environment:
-      - NG_APP=nume
+services:
+  nume:
+    hostname: nume
+    build: './nume'
+    restart: always
     volumes:
-      - ./app:/app
-      - ./builds:/builds
+      - './nume:/usr/share/nginx/html'
+    ports:
+      - '80:80'
