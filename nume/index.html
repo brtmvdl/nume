@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nume</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="nTag.js"></script>
+  <script>
+    nTag.fromElement(document.body)
+      .setStyle('margin', '1rem 0')
+      .setStyle('padding', '0')
+      .setStyle('background-color', '#faf8ef')
+      .setStyle('color', '#776e65')
+      .setStyle('font-family', '"Clear Sans", "Helvetica Neue", Arial, sans-serif')
+      .setStyle('font-size', '16px')
+
+    const app = nTag.fromId('app')
+
+    const marginAuto = new nMarginAuto()
+
+    const head = new nFlex()
+
+    const title = new nH1()
+    title.setText('Nume')
+    head.append(title)
+
+    const score = new nFlex()
+
+    const gameScore = new nScore()
+    gameScore.text.setText('Atual')
+    score.append(gameScore)
+
+    const oldScore = new nScore()
+    oldScore.text.setText('Anteriores')
+    score.append(oldScore)
+
+    head.append(score)
+
+    marginAuto.append(head)
+
+    const buttons = new nFlex()
+
+    const largeButton = new nButton()
+    largeButton.setText('Large 6')
+    largeButton.on('click', () => { game.play(nGrid.LARGE) })
+
+    const mediumButton = new nButton()
+    mediumButton.setText('Medium 5')
+    mediumButton.on('click', () => { game.play(nGrid.MEDIUM) })
+
+    const smallButton = new nButton()
+    smallButton.setText('Small 4')
+    smallButton.on('click', () => { game.play(nGrid.SMALL) })
+
+    marginAuto.append(buttons)
+
+    const body = new nTag()
+
+    const square = new nGrid()
+
+    const gameLoss = new nTag()
+    gameLoss.setStyle('background-color', 'rgba()') // FIXME
+    gameLoss.setStyle('position', 'relative')
+    gameLoss.setStyle('text-align', 'center')
+    gameLoss.setStyle('line-height', '40rem')
+    gameLoss.setStyle('height', '40rem')
+    gameLoss.setStyle('width', '40rem')
+    gameLoss.setStyle('top', '-1rem')
+    gameLoss.setStyle('left', '-1rem')
+    square.append(gameLoss)
+
+    marginAuto.append(square)
+
+    app.append(marginAuto)
+
+    class Game {
+      score = 0
+
+      grid_size = nGrid.SMALL
+      length = 4
+
+      chosen = []
+      current_numbers = []
+
+      parseLength() {
+        switch (this.grid_size) {
+          case nGrid.SMALL: this.length = 4; break;
+          case nGrid.MEDIUM: this.length = 5; break;
+          case nGrid.LARGE: this.length = 6; break;
+        }
+      }
+
+      showScore() {
+        gameScore.counter.setNumber(this.score)
+        oldScore.counter.setNumber(0)
+      }
+
+      loss() {
+        const self = this
+        return self.chosen.some((num, ix) => self.chosen.indexOf(num) !== ix)
+      }
+
+      showLoss({ num }) {
+        gameLoss.setText(num)
+      }
+
+      keep() {
+        this.score++
+
+        this.showScore()
+        this.clearNumbers()
+        this.setNumbers()
+      }
+
+      makeGrid() {
+        const self = this
+
+        square.setGrid(self.grid_size)
+        square.on('cellclick', ({ cell }) => {
+          const num = +cell.getText()
+          const line = +cell.getData('line')
+          const column = +cell.getData('column')
+
+          self.chosen.push(num)
+          self.loss() ? self.showLoss({ num, line, column }) : self.keep()
+        })
+      }
+
+      randomNumber(length) {
+        return Math.floor(Math.random() * length)
+      }
+
+      clearNumbers() {
+        this.current_numbers.map(({ line, column }) => {
+          square.setTextInCell('', line, column)
+        })
+      }
+
+      setNumbers() {
+        const space = this.length * this.length
+        let numbers_amount = Math.max(this.randomNumber(space), this.length) + 1
+        this.current_numbers = []
+
+        while (numbers_amount--) {
+          const num = this.randomNumber(100)
+          let line = -1, column = -1, exists = false
+
+          do {
+            line = this.randomNumber(this.length)
+            column = this.randomNumber(this.length)
+            exists = this.current_numbers
+              .find((crt) => crt.line === line && crt.column === column)
+          } while (exists)
+
+          this.current_numbers.push({ num, line, column })
+          square.setTextInCell(num, line, column)
+        }
+      }
+
+      play(size) {
+        this.grid_size = size
+        this.parseLength()
+        this.showScore()
+        this.makeGrid()
+        this.setNumbers()
+      }
+    }
+
+    const game = new Game()
+    game.play(nGrid.SMALL)
+  </script>
+</body>
+
+</html>
