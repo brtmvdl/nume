@@ -65,17 +65,6 @@
 
     const square = new nGrid()
 
-    const gameLoss = new nTag()
-    gameLoss.setStyle('background-color', 'rgba()') // FIXME
-    gameLoss.setStyle('position', 'relative')
-    gameLoss.setStyle('text-align', 'center')
-    gameLoss.setStyle('line-height', '40rem')
-    gameLoss.setStyle('height', '40rem')
-    gameLoss.setStyle('width', '40rem')
-    gameLoss.setStyle('top', '-1rem')
-    gameLoss.setStyle('left', '-1rem')
-    square.append(gameLoss)
-
     marginAuto.append(square)
 
     app.append(marginAuto)
@@ -108,7 +97,7 @@
       }
 
       showLoss({ num }) {
-        gameLoss.setText(num)
+        // TODO
       }
 
       keep() {
