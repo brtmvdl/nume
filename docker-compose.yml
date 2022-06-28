@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  nume:
-    hostname: nume
-    build: './nume'
+  app:
+    hostname: app
+    build: './app'
     restart: always
     volumes:
-      - './nume:/usr/share/nginx/html'
+      - './app:/usr/share/nginx/html'
     ports:
       - '80:80'
