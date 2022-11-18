@@ -8,7 +8,7 @@ Para manter uma pontuação alta você não pode clicar no mesmo número duas ve
   <img src="./docs/screenshot.png" />
 </a>
 
-## Instalação
+## Configuração (desenvolvimento)
 
 Instale o [Node.js](https://nodejs.org/en/) e o [Yarn](https://yarnpkg.com/)
 
@@ -35,8 +35,8 @@ Visualize no navegador
 
 http://localhost:4200/
 
-## Instalação com Docker
+## Configuração (Docker)
 
 ```sh
-docker run --name nume -d -p 4200:80 tmvdl/nume
+docker run -d -p 80:80 tmvdl/nume
 ```
