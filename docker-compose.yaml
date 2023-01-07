@@ -15,5 +15,5 @@ services:
     build: './src'
 
   github-release:
-    image: 'app'
+    image: 'github-release'
     build: './src/app'

@@ -1,4 +1,4 @@
-name: Github Release
+name: Github release
 
 on:
   schedule:
@@ -19,7 +19,7 @@ jobs:
         run: docker-compose build github-release
 
       - name: Export app
-        run: docker run -v $(pwd)/dist:/dist -w /dist app_app cp /app/hello/platforms/android/app/build/outputs/apk/debug/app-debug.apk . 
+        run: docker run -v $(pwd)/dist:/dist -w /dist github-release cp /app/hello/platforms/android/app/build/outputs/apk/debug/app-debug.apk . 
 
       - name: Create release
         run: gh release create v$( date +%Y%m%d%H%M ) ./dist/*.apk
