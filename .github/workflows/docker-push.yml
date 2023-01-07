@@ -10,12 +10,18 @@ jobs:
   artifacts:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Build app
-        run: docker-compose build
+      - name: Docker login
+        uses: docker/login-action@v1 
+        with:
+          username: tmvdl
+          password: ${{ secrets.GITHUBDOCKER }}
+
+      - name: Docker build
+        run: docker-compose build docker-push
 
       - name: Docker push
-        run: docker push tmvdl/projects:nume
+        run: docker push tmvdl/projects:app
 
