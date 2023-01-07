@@ -1,6 +1,6 @@
 # Nume
 
-[![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?color=blue&label=artifacts)](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?color=blue&label=artifacts) [![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?color=blue&label=docker)](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?color=blue&label=docker) [![github/license](https://img.shields.io/github/license/brtmvdl/nume)](https://img.shields.io/github/license/brtmvdl/nume) [![github/stars](https://img.shields.io/github/stars/brtmvdl/nume?style=social)](https://img.shields.io/github/stars/brtmvdl/antify?style=social)
+[![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?label=artifacts)](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?label=artifacts) [![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?label=docker)](https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?label=docker) [![github/license](https://img.shields.io/github/license/brtmvdl/nume)](https://img.shields.io/github/license/brtmvdl/nume) [![github/stars](https://img.shields.io/github/stars/brtmvdl/nume?style=social)](https://img.shields.io/github/stars/brtmvdl/antify?style=social)
 
 ## Como funciona
 
