@@ -1,1 +1,1 @@
-for i in $( find -name "*.apk" -exec echo {} + ); do cp $i . ; done;
+for i in $( find -name "*.apk" -exec echo {} + ); do cp $i /dist ; done;
