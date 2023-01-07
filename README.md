@@ -1,5 +1,7 @@
 # Nume
 
+[![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/percent/github-release.yml?color=blue&label=artifacts)](https://img.shields.io/github/actions/workflow/status/brtmvdl/percent/github-release.yml?color=blue&label=artifacts) [![github/actions/workflow/status](https://img.shields.io/github/actions/workflow/status/brtmvdl/percent/docker-push.yml?color=blue&label=docker)](https://img.shields.io/github/actions/workflow/status/brtmvdl/percent/docker-push.yml?color=blue&label=docker) [![github/license](https://img.shields.io/github/license/brtmvdl/percent)](https://img.shields.io/github/license/brtmvdl/percent) [![github/stars](https://img.shields.io/github/stars/brtmvdl/percent?style=social)](https://img.shields.io/github/stars/brtmvdl/antify?style=social)
+
 ## Como funciona
 
 Para manter uma pontuação alta você não pode clicar no mesmo número duas vezes seguidas.
