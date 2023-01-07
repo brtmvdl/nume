@@ -23,5 +23,5 @@ jobs:
         run: docker-compose build docker-push
 
       - name: Docker push
-        run: docker push tmvdl/projects:app
+        run: docker push tmvdl/projects:nume
 
