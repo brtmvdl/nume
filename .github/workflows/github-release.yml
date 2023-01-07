@@ -18,6 +18,9 @@ jobs:
       - name: Docker build
         run: docker-compose build github-release
 
+      - name: List files
+        run: docker run github-release ls -laR
+
       - name: Export app
         run: docker run -v $(pwd)/dist:/dist -w /dist github-release cp /app/hello/platforms/android/app/build/outputs/apk/debug/app-debug.apk . 
 
