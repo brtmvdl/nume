@@ -1,11 +1,19 @@
 version: '3'
 
 services:
+
   app:
-    image: 'tmvdl/projects:nume'
     hostname: app
     build: './src/app'
     volumes:
       - './src/app:/usr/share/nginx/html'
     ports:
       - '80:80'
+
+  docker-push:
+    image: 'tmvdl/projects:nume'
+    build: './src'
+
+  github-release:
+    image: 'app'
+    build: './src/app'
