@@ -12,8 +12,8 @@ services:
 
   docker-push:
     image: 'tmvdl/projects:nume'
-    build: './src'
+    build: './src/app'
 
   github-release:
     image: 'github-release'
-    build: './src/app'
+    build: './src'
