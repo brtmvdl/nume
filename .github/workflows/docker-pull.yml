@@ -1,0 +1,13 @@
+name: Docker pull
+
+on:
+  schedule:
+    - cron: '50 * * * *'
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker pull
+        run: docker pull tmvdl/projects -a
