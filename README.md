@@ -1,13 +1,9 @@
-# Nume
-
 <a href="http://nume.tarsis.cc/">
   <img src="./docs/screenshot.png" />
 </a>
 
-<h2 align="center">Do not forget your numbers.</h2>
-
 <div>
-<img src="https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?label=artifacts"  /> <img src="https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?label=docker" /> <img src="https://img.shields.io/github/license/brtmvdl/nume" /> <img src="https://img.shields.io/github/stars/brtmvdl/nume?style=social" />
+<img src="https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/github-release.yml?label=release"  /> <img src="https://img.shields.io/github/actions/workflow/status/brtmvdl/nume/docker-push.yml?label=docker" /> <img src="https://img.shields.io/github/license/brtmvdl/nume" /> <img src="https://img.shields.io/github/stars/brtmvdl/nume?style=social" />
 </div>
 
 ## Documentation
