@@ -1,1 +1,1 @@
-docker-compose -f ./docker-compose.yaml run $@ sh 
+docker-compose run $@ sh 

@@ -1,1 +1,1 @@
-docker-compose -f ./docker-compose.build.yaml build app
+docker-compose build app
