@@ -1,4 +1,4 @@
-FROM tmvdl/android:cordova
+FROM tmvdl/android:app
 
 WORKDIR /app
 
