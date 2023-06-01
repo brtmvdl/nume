@@ -1,9 +1,12 @@
-name: NPX Surge
+name: npx surge
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '15 15 * * *'
+  push:
+    branches: 
+      - 'main'
 
 jobs:
   surge:
@@ -18,4 +21,9 @@ jobs:
           node-version: '18.x'
 
       - name: Surge upload
-        run: npx surge ./src/app/
+        run: npx surge ./src/www/
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
