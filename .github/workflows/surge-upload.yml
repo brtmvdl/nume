@@ -21,7 +21,7 @@ jobs:
           node-version: '18.x'
 
       - name: Surge upload
-        run: npx surge ./src/www/
+        run: npx surge ./src/app/
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
